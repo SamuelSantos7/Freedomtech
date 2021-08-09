@@ -17,43 +17,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.squad.Freedomtech.model.TemaModel;
-import br.com.squad.Freedomtech.repository.TemaRepository;
+import br.com.squad.Freedomtech.model.PostagemModel;
+import br.com.squad.Freedomtech.repository.PostagemRepository;
 
 @RestController
-@RequestMapping("/pi/tema")
+@RequestMapping("/pi/postagem")
 @CrossOrigin("*")
-public class TemaController {
+public class PostagemController {
 
 	@Autowired
-	private TemaRepository repositoriu;
+	private PostagemRepository repositoriu;
 
 	@GetMapping
-	public ResponseEntity<List<TemaModel>> getAll() {
+	public ResponseEntity<List<PostagemModel>> getAll() {
 		return ResponseEntity.ok(repositoriu.findAll());
 	}
 
 	@GetMapping("/findbyid/{Id}")
-	public ResponseEntity<TemaModel> getById(@PathVariable Long Id) {
+	public ResponseEntity<PostagemModel> getById(@PathVariable Long Id) {
 		return repositoriu.findById(Id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 		// return ResponseEntity.status(200).body(repositoriu.findById(Id).get());
 
 	}
 
-	@GetMapping("/findByTitulo/{titulo}")
-	public ResponseEntity<List<TemaModel>> GetByTitulo(@PathVariable String titulo) {
-		return ResponseEntity.ok(repositoriu.findAllByTituloContainingIgnoreCase(titulo));
+	@GetMapping("/findByTexto/{texto}")
+	public ResponseEntity<List<PostagemModel>> GetById(@PathVariable String texto) {
+		return ResponseEntity.ok(repositoriu.findAllByTextoContainingIgnoreCase(texto));
 
 	}
 
 	@PostMapping
-	public ResponseEntity<TemaModel> criar(@Valid @RequestBody TemaModel tema) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(repositoriu.save(tema));
+	public ResponseEntity<PostagemModel> criar(@Valid @RequestBody PostagemModel postagem) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(repositoriu.save(postagem));
 	}
+
 //atualiza
 	@PutMapping
-	public ResponseEntity<TemaModel> atualizar(@Valid @RequestBody TemaModel tema) {
-		return ResponseEntity.status(HttpStatus.OK).body(repositoriu.save(tema));
+	public ResponseEntity<PostagemModel> atualizar(@Valid @RequestBody PostagemModel postagem) {
+		return ResponseEntity.status(HttpStatus.OK).body(repositoriu.save(postagem));
 	}
 
 	@DeleteMapping("/excluir/{Id}")
