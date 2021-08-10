@@ -1,12 +1,15 @@
 package br.com.squad.Freedomtech.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,14 +25,11 @@ public class Postagem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
 	
-	private String Categoria;
+
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date = new java.sql.Date(System.currentTimeMillis());
 	
-	
-	
-
 	private String titulo;
 	
 	private String texto;
@@ -43,6 +43,18 @@ public class Postagem {
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
+	
+	@OneToMany(mappedBy = "postagem",cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("postagem")
+	private List<Categoria>categoria;
+
+	public List<Categoria> getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(List<Categoria> categoria) {
+		this.categoria = categoria;
+	}
 
 	public Long getId() {
 		return id;
@@ -50,14 +62,6 @@ public class Postagem {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getCategoria() {
-		return Categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		Categoria = categoria;
 	}
 
 	public Date getDate() {
