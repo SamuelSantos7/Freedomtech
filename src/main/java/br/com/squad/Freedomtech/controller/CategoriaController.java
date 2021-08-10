@@ -17,48 +17,59 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.squad.Freedomtech.model.TemaModel;
-import br.com.squad.Freedomtech.repository.TemaRepository;
+import br.com.squad.Freedomtech.model.Categoria;
+
+import br.com.squad.Freedomtech.repository.CategoriaRepository;
+
 
 @RestController
-@RequestMapping("/pi/tema")
-@CrossOrigin("*")
-public class TemaController {
-//teste para apagar
+@RequestMapping("/categoria")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+public class CategoriaController {
+	
 	@Autowired
-	private TemaRepository repositoriu;
-
+	private CategoriaRepository repositoriu;
+	
 	@GetMapping
-	public ResponseEntity<List<TemaModel>> getAll() {
+	public ResponseEntity<List<Categoria>>getAll()
+	{
 		return ResponseEntity.ok(repositoriu.findAll());
 	}
-
+	
 	@GetMapping("/findbyid/{Id}")
-	public ResponseEntity<TemaModel> getById(@PathVariable Long Id) {
+	public ResponseEntity<Categoria> getById(@PathVariable Long Id)
+	{
 		return repositoriu.findById(Id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
-		// return ResponseEntity.status(200).body(repositoriu.findById(Id).get());
+		//return ResponseEntity.status(200).body(repositoriu.findById(Id).get());
+	
+	}
+	
+	@GetMapping("/findByCategoria/{categoria}")
+	public ResponseEntity<List<Categoria>> GetByCategoria(@PathVariable String categoria) {
+		return ResponseEntity.ok(repositoriu.findAllByCategoriaContainingIgnoreCase(categoria));
 
 	}
-
-	@GetMapping("/findByTitulo/{titulo}")
-	public ResponseEntity<List<TemaModel>> GetByTitulo(@PathVariable String titulo) {
-		return ResponseEntity.ok(repositoriu.findAllByTituloContainingIgnoreCase(titulo));
-
-	}
-
+	
 	@PostMapping
-	public ResponseEntity<TemaModel> criar(@Valid @RequestBody TemaModel tema) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(repositoriu.save(tema));
+	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria)
+	{
+		return ResponseEntity.status(HttpStatus.CREATED).body(repositoriu.save(categoria));
 	}
-//atualiza
+	
 	@PutMapping
-	public ResponseEntity<TemaModel> atualizar(@Valid @RequestBody TemaModel tema) {
-		return ResponseEntity.status(HttpStatus.OK).body(repositoriu.save(tema));
+	public ResponseEntity<Categoria> atualizar(@Valid @RequestBody Categoria categoria)
+	{
+		return ResponseEntity.status(HttpStatus.OK).body(repositoriu.save(categoria));
 	}
-
+	
 	@DeleteMapping("/excluir/{Id}")
-	public void excluir(@PathVariable Long Id) {
+	public void excluir(@PathVariable Long Id)
+	{
 		repositoriu.deleteById(Id);
 	}
+	
+	
+	
+	
 
 }
