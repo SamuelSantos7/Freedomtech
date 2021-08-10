@@ -11,7 +11,7 @@ import br.com.squad.Freedomtech.model.Postagem;
 
 public interface PostagemRepository extends JpaRepository<Postagem, Long> {
 
-	public List<Postagem> findAllByTituloContainingIgnoreCase(String nome);
+	public List<Postagem> findAllByTituloContainingIgnoreCase(String titulo);
 	
 	public List<Postagem> findAllById(String Id);	
 	
