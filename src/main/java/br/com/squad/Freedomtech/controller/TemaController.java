@@ -24,7 +24,7 @@ import br.com.squad.Freedomtech.repository.TemaRepository;
 @RequestMapping("/pi/tema")
 @CrossOrigin("*")
 public class TemaController {
-
+//teste para apagar
 	@Autowired
 	private TemaRepository repositoriu;
 
