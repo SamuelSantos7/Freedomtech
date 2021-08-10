@@ -50,7 +50,7 @@ public class TemaController {
 	public ResponseEntity<TemaModel> criar(@Valid @RequestBody TemaModel tema) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repositoriu.save(tema));
 	}
-
+//atualiza
 	@PutMapping
 	public ResponseEntity<TemaModel> atualizar(@Valid @RequestBody TemaModel tema) {
 		return ResponseEntity.status(HttpStatus.OK).body(repositoriu.save(tema));
