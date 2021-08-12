@@ -1,6 +1,7 @@
 package br.com.squad.Freedomtech.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -15,59 +16,88 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.squad.Freedomtech.Service.PostagemService;
 import br.com.squad.Freedomtech.model.Postagem;
 
 import br.com.squad.Freedomtech.repository.PostagemRepository;
 
 
 @RestController
-@RequestMapping("/Postagem")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/api/v1/postagem")
+@CrossOrigin("*")
 public class PostagemController {
 	
 	@Autowired
 	private PostagemRepository repositoriu;
 	
-	@GetMapping
-	public ResponseEntity<List<Postagem>>getAll()
-	{
-		return ResponseEntity.ok(repositoriu.findAll());
-	}
+	@Autowired
+	private PostagemService services;
 	
-	@GetMapping("/findbyid/{Id}")
-	public ResponseEntity<Postagem> getById(@PathVariable Long Id)
-	{
-		return repositoriu.findById(Id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
-		//return ResponseEntity.status(200).body(repositoriu.findById(Id).get());
-	
-	}
-	
-	@GetMapping("/findByNome/{nome}")
-	public ResponseEntity<List<Postagem>> GetByNome(@PathVariable String nome) {
-		return ResponseEntity.ok(repositoriu.findAllByTituloContainingIgnoreCase(nome));
+	@GetMapping("/todas")
+	public ResponseEntity<Object> buscarTodas() {
+		List<Postagem> listaPostagem = repositoriu.findAll();
+
+		if (listaPostagem.isEmpty()) {
+			return ResponseEntity.status(204).build();
+		} else {
+			return ResponseEntity.status(200).body(listaPostagem);
+		}
 
 	}
 	
-	@PostMapping
-	public ResponseEntity<Postagem> criar(@Valid @RequestBody Postagem postagem)
-	{
-		return ResponseEntity.status(HttpStatus.CREATED).body(repositoriu.save(postagem));
+	@GetMapping("/{id_postagem}")
+	public ResponseEntity<Postagem> buscarPorId(@PathVariable(value = "id_postagem") Long id) {
+		Optional<Postagem> objetoPostagem = repositoriu.findById(id);
+		if (objetoPostagem.isPresent()) {
+			return ResponseEntity.status(200).body(objetoPostagem.get());
+		} else {
+			return ResponseEntity.status(204).build();
+		}
 	}
 	
-	@PutMapping
-	public ResponseEntity<Postagem> atualizar(@Valid @RequestBody Postagem postagem)
-	{
-		return ResponseEntity.status(HttpStatus.OK).body(repositoriu.save(postagem));
+	@GetMapping("/pesquisa")
+	public ResponseEntity<List<Postagem>> buscarPorTitulo(@RequestParam(defaultValue = "") String titulo) {
+		return ResponseEntity.status(200).body(repositoriu.findAllByTituloContainingIgnoreCase(titulo));
 	}
 	
-	@DeleteMapping("/excluir/{Id}")
-	public void excluir(@PathVariable Long Id)
-	{
-		repositoriu.deleteById(Id);
+
+	@PostMapping("/cadastrar")
+	public ResponseEntity<Object> cadastrarPostagem(@Valid @RequestBody Postagem novaPostagem) {
+		Optional<?> objetoCadastrado = services.cadastrarPostagem(novaPostagem);
+
+		if (objetoCadastrado.isPresent()) {
+			return ResponseEntity.status(201).body(objetoCadastrado.get());
+		} else {
+			return ResponseEntity.status(400).build();
+		}
+
 	}
 	
+	@PutMapping("/alterar")
+	public ResponseEntity<Object> alterar(@Valid @RequestBody Postagem postagemParaAlterar) {
+		Optional<Postagem> objetoAlterado = services.alterarPostagem(postagemParaAlterar);
+
+		if (objetoAlterado.isPresent()) {
+			return ResponseEntity.status(201).body(objetoAlterado.get());
+		} else {
+			return ResponseEntity.status(400).build();
+		}
+	}
+	
+	@DeleteMapping("/deletar/{id_postagem}")
+	public ResponseEntity<Object> deletarPorId(@PathVariable(value = "id_postagem") Long idPostagem) {
+		Optional<Postagem> objetoExistente = repositoriu.findById(idPostagem);
+		if (objetoExistente.isPresent()) {
+			repositoriu.deleteById(idPostagem);
+			return ResponseEntity.status(200).build();
+		} else {
+			return ResponseEntity.status(400).build();
+		}
+		
+	}
 	
 	
 

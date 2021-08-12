@@ -1,6 +1,7 @@
 package br.com.squad.Freedomtech.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -17,19 +18,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.squad.Freedomtech.Service.UsuarioService;
 import br.com.squad.Freedomtech.model.Usuario;
 import br.com.squad.Freedomtech.repository.UsuarioRepository;
 
 
 
 @RestController
-@RequestMapping("/fredomtech")
+@RequestMapping("/freedomtech")
 @CrossOrigin("*")
 public class UsuarioController {
 	
 	
 	@Autowired
 	private UsuarioRepository repositoriu;
+	
+	@Autowired
+	private UsuarioService service;
 	
 	@GetMapping
 	public ResponseEntity<List<Usuario>>getAll()
@@ -51,13 +56,19 @@ public class UsuarioController {
 
 	}
 	
-	@PostMapping
-	public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario categoria)
-	{
-		return ResponseEntity.status(HttpStatus.CREATED).body(repositoriu.save(categoria));
+	@PostMapping("/cadastrar")
+	public ResponseEntity<Object> cadastrarUsuario(@Valid @RequestBody Usuario novoUsuario) {
+		Optional<Object> objetoCadastrado = service.cadastrarUsuario(novoUsuario);
+
+		if (objetoCadastrado.isPresent()) {
+			return ResponseEntity.status(201).body(objetoCadastrado.get());
+		} else {
+			return ResponseEntity.status(400).build();
+		}
+
 	}
 	
-	@PutMapping
+	@PutMapping("/alterar")
 	public ResponseEntity<Usuario> atualizar(@Valid @RequestBody Usuario categoria)
 	{
 		return ResponseEntity.status(HttpStatus.OK).body(repositoriu.save(categoria));

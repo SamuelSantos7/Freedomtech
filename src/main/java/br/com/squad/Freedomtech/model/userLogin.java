@@ -1,13 +1,19 @@
 package br.com.squad.Freedomtech.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class userLogin {
 
 	private long id;
 
 	private String nome;
-
+	@NotBlank(message = "Necessario Email")
+	@Email(message = "Necessario Email")
 	private String usuario;
 
+	@Size(min = 3, max = 100, message = "Necessario min 3 caracteres")	
 	private String senha;
 
 	private String token;

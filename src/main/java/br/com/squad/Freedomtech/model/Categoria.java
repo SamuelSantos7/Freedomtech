@@ -3,12 +3,15 @@ package br.com.squad.Freedomtech.model;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,9 +26,9 @@ public class Categoria {
 	
 	private String categoria;
 	
-	@ManyToOne
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
-	private Postagem postagem;
+	private List<Postagem> listadePostagens = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -43,13 +46,15 @@ public class Categoria {
 		this.categoria = categoria;
 	}
 
-	public Postagem getPostagem() {
-		return postagem;
+	public List<Postagem> getListadePostagens() {
+		return listadePostagens;
 	}
 
-	public void setPostagem(Postagem postagem) {
-		this.postagem = postagem;
+	public void setListadePostagens(List<Postagem> listadePostagens) {
+		this.listadePostagens = listadePostagens;
 	}
+
+
 	
 	
 	
