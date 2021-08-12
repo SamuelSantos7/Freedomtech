@@ -1,20 +1,22 @@
 package br.com.squad.Freedomtech.model;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
+
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -27,32 +29,42 @@ public class Postagem {
 	
 
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date date = new java.sql.Date(System.currentTimeMillis());
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dataPostagem = LocalDate.now();
 	
+	@NotBlank
+	@Size(min = 3, max =30)
 	private String titulo;
 	
-	private String texto;
+	@NotBlank
+	@Size(max = 300, message = "Maximo 300 caracteres")
+	private String descricao;
 	
 	private String link;
 	
 	private String resposta;
 	
+	@NotBlank
 	private Boolean aprovado;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
 	
-	@OneToMany(mappedBy = "postagem",cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("postagem")
-	private List<Categoria>categoria;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({"listaDePostagens"})
+	private Categoria categoria;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({ "minhasPostagens" })
+	private Usuario criador;
 
-	public List<Categoria> getCategoria() {
+
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(List<Categoria> categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
@@ -64,12 +76,22 @@ public class Postagem {
 		this.id = id;
 	}
 
-	public Date getDate() {
-		return date;
+
+
+	public LocalDate getDataPostagem() {
+		return dataPostagem;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDataPostagem(LocalDate dataPostagem) {
+		this.dataPostagem = dataPostagem;
+	}
+
+	public Usuario getCriador() {
+		return criador;
+	}
+
+	public void setCriador(Usuario criador) {
+		this.criador = criador;
 	}
 
 	public String getTitulo() {
@@ -80,12 +102,13 @@ public class Postagem {
 		this.titulo = titulo;
 	}
 
-	public String getTexto() {
-		return texto;
+
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setTexto(String texto) {
-		this.texto = texto;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getLink() {
