@@ -4,14 +4,15 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class userLogin {
+public class UserLogin {
 
-	private long id;
+	private Long id;
 
 	private String nome;
+	
 	@NotBlank(message = "Necessario Email")
 	@Email(message = "Necessario Email")
-	private String usuario;
+	private String login;
 
 	@Size(min = 3, max = 100, message = "Necessario min 3 caracteres")	
 	private String senha;
@@ -22,11 +23,11 @@ public class userLogin {
 
 	private String tipo;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -38,12 +39,12 @@ public class userLogin {
 		this.nome = nome;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getSenha() {

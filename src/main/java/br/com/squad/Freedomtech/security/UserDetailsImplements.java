@@ -10,51 +10,50 @@ import br.com.squad.Freedomtech.model.Usuario;
 
 public class UserDetailsImplements implements UserDetails {
 
-	
-		private static final long serialVersionUID = 1L;
-		
-		private String email;
-		private String senha;
-		private List<GrantedAuthority> authorities;
-		
-		public UserDetailsImplements(Usuario usuario) {
-			this.email = usuario.getEmail();
-			this.senha = usuario.getSenha();
-		}
+	private static final long serialVersionUID = 1L;
 
-		@Override
-		public Collection<? extends GrantedAuthority> getAuthorities() {
-			return authorities;
-		}
+	private String login;
+	private String senha;
+	private List<GrantedAuthority> authorities;
 
-		@Override
-		public String getPassword() {
-			return senha;
-		}
+	public UserDetailsImplements(Usuario usuario) {
+		this.login = usuario.getLogin();
+		this.senha = usuario.getSenha();
+	}
 
-		@Override
-		public String getUsername() {
-			return email;
-		}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
 
-		@Override
-		public boolean isAccountNonExpired() {
-			return true;
-		}
+	@Override
+	public String getPassword() {
+		return senha;
+	}
 
-		@Override
-		public boolean isAccountNonLocked() {
-			return true;
-		}
+	@Override
+	public String getUsername() {
+		return login;
+	}
 
-		@Override
-		public boolean isCredentialsNonExpired() {
-			return true;
-		}
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
 
-		@Override
-		public boolean isEnabled() {
-			return true;
-		}
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 
 }
