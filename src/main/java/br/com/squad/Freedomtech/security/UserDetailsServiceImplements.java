@@ -13,15 +13,15 @@ import br.com.squad.Freedomtech.repository.UsuarioRepository;
 
 @Service
 public class UserDetailsServiceImplements implements UserDetailsService {
-	
+
 	@Autowired
 	private UsuarioRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		Optional<Usuario> usuario = userRepository.findByEmail(username);
-		
+
+		Optional<Usuario> usuario = userRepository.findByLogin(username);
+
 		if (usuario.isPresent()) {
 			return new UserDetailsImplements(usuario.get());
 		} else {
@@ -29,5 +29,4 @@ public class UserDetailsServiceImplements implements UserDetailsService {
 		}
 	}
 
-		
 }

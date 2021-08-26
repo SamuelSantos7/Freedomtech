@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,53 +19,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.squad.Freedomtech.Service.PostagemService;
 import br.com.squad.Freedomtech.model.Postagem;
 
 import br.com.squad.Freedomtech.repository.PostagemRepository;
-
+import br.com.squad.Freedomtech.service.PostagemService;
 
 @RestController
-@RequestMapping("/api/v1/postagem")
+@RequestMapping("/freedomtech/postagem")
 @CrossOrigin("*")
 public class PostagemController {
-	
+
 	@Autowired
-	private PostagemRepository repositoriu;
-	
+	private PostagemRepository repositoriP;
+
 	@Autowired
 	private PostagemService services;
-	
+
 	@GetMapping("/todas")
-	public ResponseEntity<Object> buscarTodas() {
-		List<Postagem> listaPostagem = repositoriu.findAll();
-
-		if (listaPostagem.isEmpty()) {
-			return ResponseEntity.status(204).build();
-		} else {
-			return ResponseEntity.status(200).body(listaPostagem);
-		}
+	public ResponseEntity<List<Postagem>> pegarTodas() {
+		return ResponseEntity.ok(repositoriP.findAll());
 
 	}
-	
+
 	@GetMapping("/{id_postagem}")
-	public ResponseEntity<Postagem> buscarPorId(@PathVariable(value = "id_postagem") Long id) {
-		Optional<Postagem> objetoPostagem = repositoriu.findById(id);
-		if (objetoPostagem.isPresent()) {
-			return ResponseEntity.status(200).body(objetoPostagem.get());
-		} else {
-			return ResponseEntity.status(204).build();
-		}
-	}
-	
-	@GetMapping("/pesquisa")
-	public ResponseEntity<List<Postagem>> buscarPorTitulo(@RequestParam(defaultValue = "") String titulo) {
-		return ResponseEntity.status(200).body(repositoriu.findAllByTituloContainingIgnoreCase(titulo));
-	}
-	
+	public ResponseEntity<Postagem> pegarPostagemPorId(@PathVariable(value = "id_postagem") Long id) {
+		return repositoriP.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 
-	@PostMapping("/cadastrar")
-	public ResponseEntity<Object> cadastrarPostagem(@Valid @RequestBody Postagem novaPostagem) {
+	}
+
+	@GetMapping("/Titulo/{titulo}")
+	public ResponseEntity<List<Postagem>> pegarPorTitulo(@PathVariable String titulo) {
+		return ResponseEntity.status(200).body(repositoriP.findAllByTituloContainingIgnoreCase(titulo));
+	}
+
+	@GetMapping("/pesquisa")
+	public ResponseEntity<List<Postagem>> pegarPorTitulo2(@RequestParam(defaultValue = "") String titulo) {
+		return ResponseEntity.status(200).body(repositoriP.findAllByTituloContainingIgnoreCase(titulo));
+	}
+
+	@PostMapping("/salvar")
+	public ResponseEntity<Object> salvarPostagem(@Valid @RequestBody Postagem novaPostagem) {
 		Optional<?> objetoCadastrado = services.cadastrarPostagem(novaPostagem);
 
 		if (objetoCadastrado.isPresent()) {
@@ -75,9 +68,9 @@ public class PostagemController {
 		}
 
 	}
-	
+
 	@PutMapping("/alterar")
-	public ResponseEntity<Object> alterar(@Valid @RequestBody Postagem postagemParaAlterar) {
+	public ResponseEntity<Object> alterarPostagem(@Valid @RequestBody Postagem postagemParaAlterar) {
 		Optional<Postagem> objetoAlterado = services.alterarPostagem(postagemParaAlterar);
 
 		if (objetoAlterado.isPresent()) {
@@ -86,19 +79,16 @@ public class PostagemController {
 			return ResponseEntity.status(400).build();
 		}
 	}
-	
+
 	@DeleteMapping("/deletar/{id_postagem}")
-	public ResponseEntity<Object> deletarPorId(@PathVariable(value = "id_postagem") Long idPostagem) {
-		Optional<Postagem> objetoExistente = repositoriu.findById(idPostagem);
-		if (objetoExistente.isPresent()) {
-			repositoriu.deleteById(idPostagem);
-			return ResponseEntity.status(200).build();
-		} else {
-			return ResponseEntity.status(400).build();
-		}
-		
+	public ResponseEntity<Object> deletarPostagem(@PathVariable(value = "id_postagem") Long id) {
+		return repositoriP.findById(id).map(resp -> {
+			repositoriP.deleteById(id);
+			return ResponseEntity.ok().build();
+		}).orElseGet(() -> {
+			return ResponseEntity.notFound().build();
+		});
+
 	}
-	
-	
 
 }

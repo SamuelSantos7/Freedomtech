@@ -4,19 +4,22 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import br.com.squad.Freedomtech.model.util.TipoUsuario;
 
 @Entity
 @Table(name = "usuario")
@@ -26,24 +29,23 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
 
-	@NotBlank
-	@Size(min = 3, max = 30)
-	private String tipo_usuario;
+	@Enumerated(EnumType.STRING)
+	private TipoUsuario tipo;
 
 	@NotBlank
 	@Size(min = 3, max = 30)
 	private String nome;
 
 	@NotBlank
-	@Size(min = 3, max = 70)
+	@Size(min = 3, max = 100)
 	private String email;
 
 	private String Linkedin;
 
-	@CPF
+	@CPF(message = " Entre com CPF ")
 	private String cpf;
-	
-	
+
+	@CNPJ(message = " Entre com CNPJ ")
 	private String cnpj;
 
 	@NotBlank
@@ -54,7 +56,9 @@ public class Usuario {
 	@Size(min = 3, max = 100)
 	private String senha;
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private String foto;
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
 
@@ -74,12 +78,12 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getTipo_usuario() {
-		return tipo_usuario;
+	public TipoUsuario getTipo() {
+		return tipo;
 	}
 
-	public void setTipo_usuario(String tipo_usuario) {
-		this.tipo_usuario = tipo_usuario;
+	public void setTipo(TipoUsuario tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getNome() {
@@ -105,7 +109,7 @@ public class Usuario {
 	public void setLinkedin(String linkedin) {
 		Linkedin = linkedin;
 	}
-	
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -136,6 +140,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 }

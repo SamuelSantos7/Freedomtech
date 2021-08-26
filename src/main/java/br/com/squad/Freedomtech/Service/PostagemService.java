@@ -1,4 +1,4 @@
-package br.com.squad.Freedomtech.Service;
+package br.com.squad.Freedomtech.service;
 import java.util.Optional;
 
 
@@ -21,15 +21,13 @@ public class PostagemService {
 	private UsuarioRepository repositoryU;
 	
 	@Autowired
-	
 	private CategoriaRepository repositoryC;
-	
 	
 	public Optional<?> cadastrarPostagem(Postagem novaPostagem) {
 		Optional<Categoria> objetoExistente = repositoryC.findById(novaPostagem.getCategoria().getId());
-		return repositoryU.findById(novaPostagem.getCriador().getId()).map(usuarioExistente -> {
+		return repositoryU.findById(novaPostagem.getUsuario().getId()).map(usuarioExistente -> {
 			if (objetoExistente.isPresent()) {
-				novaPostagem.setCriador(usuarioExistente);
+				novaPostagem.setUsuario(usuarioExistente);
 				novaPostagem.setCategoria(objetoExistente.get());
 				return Optional.ofNullable(repositoryP.save(novaPostagem));
 			} else {
@@ -40,11 +38,13 @@ public class PostagemService {
 		});
 	}
 	
-	
 	public Optional<Postagem> alterarPostagem(Postagem postagemParaAlterar) {
 		return repositoryP.findById(postagemParaAlterar.getId()).map(postagemExistente -> {
 			postagemExistente.setTitulo(postagemParaAlterar.getTitulo());
 			postagemExistente.setDescricao(postagemParaAlterar.getDescricao());
+			postagemExistente.setLink(postagemParaAlterar.getLink());
+			postagemExistente.setResposta(postagemParaAlterar.getResposta());
+			postagemExistente.setAprovado(postagemParaAlterar.getAprovado());
 			return Optional.ofNullable(repositoryP.save(postagemExistente));
 		}).orElseGet(() -> {
 			return Optional.empty();
