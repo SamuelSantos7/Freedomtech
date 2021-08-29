@@ -1,4 +1,4 @@
-package br.com.squad.Freedomtech.service;
+package br.com.squad.Freedomtech.Service;
 
 import java.nio.charset.Charset;
 import java.util.Optional;
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.com.squad.Freedomtech.model.UserLogin;
 import br.com.squad.Freedomtech.model.Usuario;
+import br.com.squad.Freedomtech.model.userLogin;
 import br.com.squad.Freedomtech.repository.UsuarioRepository;
 
 @Service
@@ -29,7 +29,7 @@ public class UsuarioService {
 		});
 	}
 
-	public Optional<?> pegarCredenciais(UserLogin usuarioParaAutenticar) {
+	public Optional<?> pegarCredenciais(userLogin usuarioParaAutenticar) {
 		return repository.findByLogin(usuarioParaAutenticar.getLogin()).map(usuarioExistente -> {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 

@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.squad.Freedomtech.model.UserLogin;
+import br.com.squad.Freedomtech.Service.UsuarioService;
 import br.com.squad.Freedomtech.model.Usuario;
+import br.com.squad.Freedomtech.model.userLogin;
 import br.com.squad.Freedomtech.repository.UsuarioRepository;
-import br.com.squad.Freedomtech.service.UsuarioService;
+
+
 
 @RestController
 @RequestMapping("/freedomtech/usuario")
@@ -64,7 +66,7 @@ public class UsuarioController {
 
 	@SuppressWarnings("rawtypes")
 	@PostMapping("/logar")
-	public ResponseEntity logarUsuario(@Valid @RequestBody UserLogin loginSenha) {
+	public ResponseEntity logarUsuario(@Valid @RequestBody userLogin loginSenha) {
 		Optional objetoCredenciado = service.pegarCredenciais(loginSenha);
 
 		if (objetoCredenciado.isPresent()) {

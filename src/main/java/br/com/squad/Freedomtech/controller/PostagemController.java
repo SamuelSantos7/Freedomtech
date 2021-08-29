@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.squad.Freedomtech.Service.PostagemService;
 import br.com.squad.Freedomtech.model.Postagem;
 
 import br.com.squad.Freedomtech.repository.PostagemRepository;
-import br.com.squad.Freedomtech.service.PostagemService;
+
 
 @RestController
 @RequestMapping("/freedomtech/postagem")
