@@ -1,4 +1,4 @@
-package br.com.squad.Freedomtech.service;
+package br.com.squad.Freedomtech.Service;
 import java.util.Optional;
 
 
