@@ -1,0 +1,90 @@
+.bgsobrenos
+{
+    background-color: rgb(48, 82, 82);
+    height: 1080px;
+}
+
+.image
+{
+    width: 270px; 
+    height: 200px;
+}
+
+.popup
+{
+
+    background-color: white;
+    position: absolute;
+    left: 35%;
+    top: 90px;
+
+}
+.ff
+{
+    margin:2px;
+    border: 5px;
+    border-color: black;
+    background-color: #eeeeee;
+}
+.imgposition 
+{
+
+    position: absolute;
+    border-radius: 10px;
+    left: 18%;
+    top: 140%; 
+    z-index: 1;
+
+}
+
+.bordas
+{
+    border-radius: 10px;
+}
+
+.positiontext
+{
+    height: 500px;
+    background-color: white;
+    position: absolute;
+    left: 45%;
+    top: 143%;
+
+}
+
+.espaco_esquerdo
+{
+    margin-left: 60px;
+}
+.mt
+{
+    margin-top: 10%;
+}
+
+.texto_centro
+{
+    text-align: center;
+}
+
+.alinhar_centro
+{
+    align-items: center;
+
+}
+
+.ml50
+{
+    margin-left: 25%;
+}
+
+.verde
+{
+background-color: rgb(48, 82, 82);
+
+
+}
+
+.textobranco
+{
+    color: white;
+}
