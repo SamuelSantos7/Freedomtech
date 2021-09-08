@@ -7,7 +7,9 @@ import { ProjetoComponent } from './projeto/projeto.component';
 import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarrosselComponent } from './carrossel/carrossel.component';
-import { CadastrarComponent } from './cadastrar/cadastrar.component';
+//import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
     SobreNosComponent,
     FooterComponent,
     CarrosselComponent,
-    CadastrarComponent
+    //CadastrarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

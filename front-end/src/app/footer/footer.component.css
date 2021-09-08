@@ -1,9 +1,29 @@
-ul.social-network {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.bkFooter1{
+  background-color: rgb(48, 82, 82);
+  height:10%;
 }
 
-.cor-bg {
-    background-color:rgb(48, 82, 82);
+.bkFooter2{
+  height:10%;
+  background-color: rgb(48, 82, 82);
+  background-image: none;
+  box-shadow: 0 0 0.5em 0 black;
+}
+
+.cor:hover{
+  color: red;
+}
+
+.icones{
+  font-size: 36pt;
+}
+
+.ajusteFooter{
+  padding-left: 1 rem;
+}
+
+@media (max-width: 1000px){
+.ajusteFooter{
+  padding-left: 1rem;
+}
 }

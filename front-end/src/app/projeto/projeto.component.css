@@ -1,12 +1,12 @@
 .bgsobrenos
 {
-    background-color: rgb(48, 82, 82);
+    background-color: rgb(23, 241, 241);
     height: 1080px;
 }
 
 .image
 {
-    width: 270px; 
+    width: 270px;
     height: 200px;
 }
 
@@ -26,13 +26,13 @@
     border-color: black;
     background-color: #eeeeee;
 }
-.imgposition 
+.imgposition
 {
 
     position: absolute;
     border-radius: 10px;
     left: 18%;
-    top: 140%; 
+    top: 140%;
     z-index: 1;
 
 }
@@ -86,5 +86,5 @@ background-color: rgb(48, 82, 82);
 
 .textobranco
 {
-    color: white;
+    color: rgb(65, 7, 7);
 }
