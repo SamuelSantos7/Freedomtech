@@ -1,10 +1,10 @@
 .card {
 
-  border-color:ghostwhite;
+  border-color:rgb(224, 240, 235);
 
   }
   .container-fluid {
-   background-color:ghostwhite;
+   background-color:rgb(228, 228, 241);
   }
   .listbox{
     shape-image-threshold: 1;
