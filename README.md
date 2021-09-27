@@ -10,7 +10,7 @@
 
 <h3 align="center">
 
-♻️ Ecoleta é um projeto **Open Source** desenvolvido na semana **Next Level Week (1.0)** da **[Rocketseat][rocketseat_site]** utilizando as tecnologias ***TypeScript, Node, React e React Native***.
+♻️ Uma rede social, focada no compartilhamento de temas educacionais e tecnologicos para incentivar e facilitar o acesso de novos estudantes, egressos do sistema prisional, ao mercado de trabalho.
 
 </h3>
 
