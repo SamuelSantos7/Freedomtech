@@ -30,6 +30,15 @@ Esses números nos incentivam a cada vez mais buscar a democratização do conhe
   ...
 -->
 
+## FUNCIONALIDADES E PAGINAÇÃO:
+### Home
+### Cadastro de usuario
+### Login 
+### Sobre nós
+### Timeline
+### Atualize-se
+
+
 ## **:computer: TECNOLOGIAS ULTILIZADAS**
 ![Java](https://img.shields.io/badge/-Java-000000?style=flat&logo=java)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-000000?style=flat&logo=javascript)
@@ -162,5 +171,5 @@ $ npm run start
   - Agora é só abrir um *pull request* no repositório que você fez o *fork* e assim que acontecer o *merge* sua Issue será fechada e suas alterações irão fazer parte do projeto;
   - Depois que o *merge* da sua pull request for feito, você pode deletar a sua *branch*.
 
-  \* **Obrigado por contribuir!** ❤️ :facepunch: :blush:
+  \* **Obrigade por contribuir!** ❤️ :: :blush:
 
