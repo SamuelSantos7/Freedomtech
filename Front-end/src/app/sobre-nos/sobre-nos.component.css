@@ -1,0 +1,118 @@
+.bgsobrenos
+{
+    background-color: rgb(48, 82, 82);
+    height: 1080px;
+}
+
+.btn-info{
+
+    background-color: #488282;
+    }
+    
+.tamLetra {
+    font-size: 18px;
+}
+
+.tamLetragg {
+    font-size: 64px;
+}
+
+.backcolor {
+    background-color: rgb(48, 82, 82);
+}
+
+.backimage {
+    background-image: url;
+}
+
+.popup
+{
+    position: absolute;
+    left: 25%;
+    top: 60px;
+
+}
+.ff
+{
+    margin:5px;
+    border: 5px;
+    border-color: white;
+    background-color: #eeeeee;
+}
+
+.margem
+{
+    padding-bottom: 20cm;
+    padding-top: 5cm;
+}
+
+.texto_centro
+{
+    text-align: center;
+}
+
+.verde
+{
+background-color: rgb(48, 82, 82);
+
+
+}
+
+.textobranco
+{
+    color: white;
+}
+
+.header-site {
+    background-image: url(../../assets/IMG/fundo/5.png);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    padding-top: 300px;
+    padding-bottom: 300px;
+}
+
+.p-padrao {
+    padding-left: cm;
+    padding-bottom: 2cm;
+    padding-right: -3cm; 
+    -webkit-padding-start: -8cm; 
+}
+.p-10 {
+    padding-top: 20px;
+}
+
+.m-10 {
+    margin: 15px;
+}
+
+.zoom {
+    overflow: hidden;
+}
+
+.zoom img {
+    max-width: 100%;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.zoom:hover img {
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.popup-color {
+    background-color: rgb(48, 82, 82);
+}
+
+.cardTamanho{
+    height: 10cm;
+    width: 18cm;
+}
+
+ /* Botão de Voltar ao topo*/
+
