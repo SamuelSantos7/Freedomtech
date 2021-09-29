@@ -1,0 +1,33 @@
+    <div class="backg">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <h1 class="text-center text-secondary">Atualizar Categoria</h1>
+            </div>
+        </div>
+    <br>
+    <br>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+    
+                <div class="form-group font-weight-bold">
+                    <label for="categoria">Categoria</label>
+                    <input type="text" class="form-control font-weight-bold" id="tema" [(ngModel)]='categoria.categoria'>
+                </div>
+    
+                <br>
+                <br>
+                <br>
+                <br>
+    
+                <div class="d-flex justify-content-center marginbotton">
+                    <button class="btn btn-danger mr-4 margin" routerLink='/categoria'>Cancelar</button>
+                    <button class="btn btn-success" (click)='atualizar()'>Atualizar</button>
+                </div>
+    <br>
+            </div>
+        </div>
+    
+    </div>
+    
+
