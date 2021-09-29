@@ -1,0 +1,40 @@
+
+
+.card {
+  border-color:white;
+  }
+
+  .container-fluid {
+background-color: white;
+  }
+  .listbox{
+    shape-image-threshold: 1;
+  }
+
+  .grow:hover
+{
+        -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        transform: scale(1.3);
+}
+
+.sombra{
+  color: white; 
+  text-shadow: #565656 0.3em 0.3em 0.4em;
+}
+
+.p-10 {
+  padding-bottom: 30px;
+  padding-top: 15px;
+}
+
+.header-site {
+  background-image: url(../../assets/IMG/Design.gif);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: white;
+  padding-top: 300px;
+  padding-bottom: 300px;
+}
