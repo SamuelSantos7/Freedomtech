@@ -1,0 +1,38 @@
+
+<body class="img-bg">
+    <div class= "justify-content-center aligh-item-center">
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <br>
+    <div class="container login-container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6 login-form-1">
+                        <h2>ACESSE A ÁREA DO ALUNO</h2>
+                            <div class="form-group">
+                                <label for="login" class="text-white bold">Email</label>
+                                <input [(ngModel)]='userLogin.login' class="form-control" type="text" name="login" id="login" placeholder="digite seu e-mail">
+                            </div>
+                            <div class="form-group">
+                                <label for="senha" class="text-white bold">Senha</label>
+                                <input type="password" class="form-control" placeholder="Digite sua senha*" [(ngModel)]='userLogin.senha' />
+                            </div>
+                            <br>
+                            <div class="form-group">
+                              <Button class="btn btn-info border-0 text-white" (click)="entrar()">Logar</Button>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <a href="#" class="btnForgetPwd">Ainda não tem cadastro?  </a>
+                            
+                                <a class="text-white text-weight-bold" href="/cadastro">CLIQUE AQUI</a>
+                            
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>    
+            <br>
+        </div>   
+</body>
