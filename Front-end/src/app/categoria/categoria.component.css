@@ -1,0 +1,25 @@
+.fontsiz {
+    font-size: 20px;
+}
+
+.bg-back {
+    background-image: url(../../assets/IMG/Pessoamexendonopcverde.jpg);
+}
+
+.bg-teste {
+    background-image: url(../../assets/IMG/fundo/14.png);
+}
+
+.opaque
+{
+   opacity: 0.5;
+}
+
+.margin {
+    padding-left: 1cm;
+    padding-right: 1cm;
+}
+
+.margintext {
+    padding-left: 2cm;
+}

@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-white cor-bg align-items-center">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+    aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+    <span>
+      <img src="https://i.imgur.com/J31gurs.png" alt="botão de menu" width="30px" height="30px" class="img-fluid">
+    </span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+    <ul class="navbar-nav mr-auto d-flex align-items-center">
+
+      <li>
+        <button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="Inicio">
+        <img src="https://i.imgur.com/Q7LG9zn.png" alt="imagem do user" width="150px" height="150px" class="img-fluid grow" routerLink="/inicio">
+        </button>
+      </li>
+
+      <li class="nav-item-active align-items-center">
+        <button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="Início">
+          <a class="nav-link font-weight-bold text-white threed fontM" href="#">HOME <span class="sr-only"></span></a>
+        </button>
+      </li>
+
+
+      <li class="nav-item align-items-center font-weight-bold" *ngIf='auth.logado()'>
+        <button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="Click e veja mais">
+        <a class="nav-link dropdown-toggle font-weight-bold text-white threed fontP" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          ÁREA DO ALUNO
+        </a>
+     
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf='auth.logado()'>
+          <a class="dropdown-item" routerLink='/timeline'>FEED</a>
+          <a class="dropdown-item" routerLink='/categoria' href="#">CATEGORIAS</a>
+          
+        </div>
+      </button>
+      </li>
+
+
+      <li class="nav-item align-items-center">
+        <button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="Nossos contatos">
+        <a class="nav-link font-weight-normal text-white threed fontP" routerLink='/contatos' href="#">CONTATOS</a>
+      </button>
+      </li>
+
+      <li class="nav-item align-items-center"*ngIf='!auth.logado()'>
+        <button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="Inscreva-se">
+        <a class="nav-link font-weight-normal text-white threed fontP" routerLink='/cadastro' href="#">CADASTRE-SE</a>
+      </button>
+      </li>
+
+      <li class="nav-item dropdown">
+        <button type="button" class="btn font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="Click e veja mais">
+        <a class="nav-link dropdown-toggle font-weight-bold text-white threed fontP" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          VEJA MAIS
+        </a>
+     
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink='/atualizar' href="#">ATUALIZE-SE</a>
+          <a class="dropdown-item" href="https://linktr.ee/Freedom.Tech" target="_blank">QUEM SOMOS</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="https://open.spotify.com/playlist/234iIipKkkmNwtZtWBcQCF?si=db15c1e693504429" target="_blank">OUÇA NOSSA PLAYLIST</a>
+        </div>
+      </button>
+      </li>
+
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+      aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+      <span class="navbar-toggler-icon-white"></span>
+    </button>
+  </ul>
+  <form class="form-inline my-2 my-lg-0" *ngIf='!auth.logado()'>
+          <button class="btn btn-light font-weight-bold entrarmarg my-2 my-sm-0" routerLink='/login' href='#' type="submit">Entrar</button>
+  </form>
+
+  
+</div>
+</nav>
