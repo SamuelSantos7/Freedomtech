@@ -32,12 +32,16 @@ Esses números nos incentivam a cada vez mais buscar a democratização do conhe
 -->
 
 ## FUNCIONALIDADES E PAGINAÇÃO:
-### Home
 ### Cadastro de usuario
+### Home
+### Postagem
+### Editar postagem
+### Adicionar categorias
 ### Login 
 ### Sobre nós
 ### Timeline
 ### Atualize-se
+### Playlist colaborativa
 
 
 ## **:computer: TECNOLOGIAS ULTILIZADAS**
@@ -144,7 +148,7 @@ $ npm run start
 
 ## **:octocat: COMO CONTRIBUIR**
   
-  - Verifique as **[Issues](https://github.com/x0n4d0/ecoleta/projects/1)** que estão abertas e se já não existe alguma com a sua feature;
+  - Verifique as **[Issues](https://github.com/SamuelSantos7/Freedomtech)** que estão abertas e se já não existe alguma com a sua feature;
   - Abra uma **Issue** com o nome e descrição da sua feature e assine com o seu usuário informando que irá fazê-la;
   - Faça um **[fork](https://help.github.com/pt/github/getting-started-with-github/fork-a-repo)** do repositório;
   - Entre no sua página do GitHub e faça um **clone** do seu **fork**;
